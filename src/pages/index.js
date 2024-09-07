@@ -33,16 +33,24 @@ export default function Home() {  // <-- Correct default export
 
   return (
     <Layout>
-      <TimeSelector onSelectTime={setTimeRange} />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <StatCard title="Total Leads" value={stats.leads} icon="👥" />
-        <StatCard title="Conversions" value={stats.conversions} icon="💼" />
-        <StatCard title="Bounced" value={stats.bounced} icon="📉" />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <TimeSelector onSelectTime={setTimeRange} />
+
+    {/* Stats Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <StatCard title="Total Leads" value={stats.leads} icon="👥" />
+      <StatCard title="Conversions" value={stats.conversions} icon="💼" />
+      <StatCard title="Bounced" value={stats.bounced} icon="📉" />
+    </div>
+
+    {/* Charts with responsive containers */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="w-full max-w-md mx-auto aspect-w-1 aspect-h-1 mt-9">
         <PieChart stats={stats} />
+      </div>
+      <div className="w-full max-w-md mx-auto aspect-w-2 aspect-h-1 mt-9">
         <LineChart stats={stats} />
       </div>
-    </Layout>
+    </div>
+  </Layout>
   );
 }
